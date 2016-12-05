@@ -1,19 +1,26 @@
+module BookKeeping
+  VERSION = 3
+end 
+
 class Hamming
 
   def self.compute(a, b)
+    raise ArgumentError if a.length != b.length
     if a == b
-      0
+      result = 0
     elsif
-      compute_difference(a, b)
+      result = compute_difference(a, b)
     end
+    result
   end
 
-  def compute_difference(a, b)
+  def self.compute_difference(a, b)
     split_a = a.chars
-    counter = 0
+    @counter = 0
     split_a.each_with_index do |letter, i |
-      counter += 1 if a[i] != b[i]
+      @counter += 1 if a[i] != b[i]
     end
+    @counter
   end
 
 end
